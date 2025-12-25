@@ -406,20 +406,10 @@
     <script>
         let svg, simulation, zoom;
 
-        const promptTemplate = `Analyze the topic "[TOPIC]" and break it down into a concept map.
-
-Identify:
-• 1 core concept (layer 1)
-• 4-6 main subtopics that branch from the core (layer 2)
-• 5-8 specific details, examples, or techniques under those subtopics (layer 3)
-
-Connect them with relationships:
-• hierarchy: parent to child concepts
-• dependency: one concept requires understanding another first
-• association: concepts that relate but aren't hierarchical
-
-Return ONLY valid JSON, no markdown or explanation:
-{"topic": "…", "nodes": [{"id": "1", "label": "…", "layer": 1}], "edges": [{"from": "1", "to": "2", "type": "hierarchy"}]}`;
+        const promptTemplate = `Generate a comprehensive categorized summary of the topic "[TOPIC]". Output your summary as JSON code only.
+Use this format:
+{"topic": "…", "nodes": [{"id": "1", "label": "…", "layer": 1}], "edges": [{"from": "1", "to": "2", "type": "hierarchy|dependency|association"}]}
+Layer 1: core concept. Layer 2: main categories. Layer 3: specific details. Edge types: hierarchy (parent-child), dependency (requires), association (related).`;
 
         const exampleData = {
             "topic": "Machine Learning",
